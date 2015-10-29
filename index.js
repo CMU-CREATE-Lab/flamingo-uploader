@@ -174,7 +174,7 @@ var getFeedDetails = function(callback) {
    var feed = {
       name : "",
       exposure : "outdoor",   // Flamingos are always outdoor devices
-      isPublic : false,
+      isPublic : true,        // default to public
       isMobile : false,       // Flamingos are never mobile
       latitude : null,
       longitude : null
@@ -203,9 +203,9 @@ var getFeedDetails = function(callback) {
 
             // get whether the feed is public
             function(done) {
-               cli.question("   Is Public (y/N): ", function(isPublic) {
+               cli.question("   Is Public (Y/n): ", function(isPublic) {
                   isPublic = trim(isPublic).toLowerCase();
-                  feed.isPublic = !!(isPublic == 'y' || isPublic == 'yes' || isPublic == 'true' || isPublic == 1);
+                  feed.isPublic = !!(isPublic == '' || isPublic == 'y' || isPublic == 'yes' || isPublic == 'true' || isPublic == 1);
                   done();
                });
             },
