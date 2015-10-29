@@ -1,6 +1,6 @@
 {
   "name": "flamingo-uploader",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "Simple Node.js command line app to convert Flamingo CSV files to JSON and upload them to ESDR.",
   "main": "index.js",
   "dependencies": {
