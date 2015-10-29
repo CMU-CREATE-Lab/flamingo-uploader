@@ -1,4 +1,4 @@
 Flamingo Uploader
 =================
 
-Simple app to convert Flamingo CSV files to JSON and upload them to ESDR.
+Simple Node.js command line app to convert Flamingo CSV files to JSON and upload them to ESDR.
