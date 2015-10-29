@@ -4,9 +4,8 @@ var superagent = require('superagent');
 var httpStatus = require('http-status');
 var fs = require('fs');
 var path = require('path');
-var execFile = require('child_process').execFile;
 var TempFile = require('./lib/TempFile');
-var os = require('os')
+var os = require('os');
 var config = require('./config');
 
 var ESDR_ROOT_URL = config.get("esdr:rootUrl");
@@ -152,14 +151,23 @@ var getDataFileInputStream = function(callback) {
 };
 
 var readFirstLine = function(file, callback) {
-   // TODO: this will break on systems which don't have the head utility.  Deal with that...someday.
-   execFile("head", ["-n", "1", file], function(err, stdout) {
-      if (err) {
-         console.log("Failed to read first line of the file" + err);
-         callback(err);
+   var firstLine = null;
+   // create a stream reader for the CSV. Got this from http://stackoverflow.com/a/32599033/703200
+   var rl = require('readline').createInterface({
+      input : fs.createReadStream(file)
+   });
+
+   // save the first line, and ignore all the rest.  Yeah, I know this is inefficient and dumb.
+   rl.on('line', function(line) {
+      if (firstLine == null) {
+         firstLine = line;
       }
-      else {
-         callback(null, stdout);
+   });
+   rl.on('close', function() {
+      if (firstLine == null) {
+         callback(new Error("Failed to read first line of the file"));
+      } else {
+         callback(null, firstLine);
       }
    });
 };
@@ -445,6 +453,7 @@ nimble.series([
                                 abort("Failed to create device in ESDR: " + err);
                              }
                              else {
+                                printMessage("Device created!");
 
                                 // remember the device ID
                                 deviceId = res.body.data.id;
