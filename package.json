@@ -1,0 +1,26 @@
+{
+  "name": "flamingo-uploader",
+  "version": "0.9.0",
+  "description": "Simple Node.js command line app to convert Flamingo CSV files to JSON and upload them to ESDR.",
+  "main": "index.js",
+  "dependencies": {
+    "nimble": "^0.0.2",
+    "http-status": "^0.2.0",
+    "nconf": "^0.8.2",
+    "superagent": "^1.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CMU-CREATE-Lab/flamingo-uploader.git"
+  },
+  "author": "Chris Bartley <bartley@cmu.edu>",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/CMU-CREATE-Lab/flamingo-uploader/issues"
+  },
+  "homepage": "https://github.com/CMU-CREATE-Lab/flamingo-uploader"
+}
