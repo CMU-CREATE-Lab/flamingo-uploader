@@ -3,3 +3,5 @@
 *.iws
 out
 logs/*.log*
+config-user.json
+data/*
